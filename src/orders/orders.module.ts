@@ -7,8 +7,8 @@ import { GetOrdersHandler } from './application/handlers/queries/get-orders.hand
 import { OrderApplicationService } from './application/services/order-application.service';
 import { RegisterOrderValidator } from './application/validators/register-order.validator';
 import { ORDER_REPOSITORY } from './domain/aggregates/order/order.repository';
-import { OrderEntity } from './infrastructure/persistance/entities/order.entity';
-import { OrderEntityRepository } from './infrastructure/persistance/repositories/order.repository';
+import { OrderEntity } from './infrastructure/persistence/entities/order.entity';
+import { OrderEntityRepository } from './infrastructure/persistence/repositories/order.repository';
 import { OrderController } from './interface/rest/order.controller';
 
 export const CommandHandlers = [RegisterOrderHandler];

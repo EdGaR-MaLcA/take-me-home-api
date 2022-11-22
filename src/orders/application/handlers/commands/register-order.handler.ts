@@ -33,6 +33,7 @@ export class RegisterOrderHandler
       order.commit();
       await queryRunner.commitTransaction();
     } catch(err) {
+      console.log(err);
       await queryRunner.rollbackTransaction();
       order = null;
     } finally {

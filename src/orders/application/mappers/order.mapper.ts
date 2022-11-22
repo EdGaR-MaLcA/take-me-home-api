@@ -12,11 +12,11 @@ import { RegisterOrderResponse } from '../dtos/response/register-order-response.
 import { OrderFactory } from 'src/orders/domain/factories/order.factory';
 import { OrderOrigin } from 'src/orders/domain/enums/order-origin.values';
 import { OrderDestination } from 'src/orders/domain/enums/order-destination.values';
-import { OrderEntity } from 'src/orders/infrastructure/persistance/entities/order.entity';
-import { ClientIdValue } from 'src/orders/infrastructure/persistance/values/client-id.value';
-import { OrderOriginValue } from 'src/orders/infrastructure/persistance/values/order-origin.value';
-import { OrderDestinationValue } from 'src/orders/infrastructure/persistance/values/order-destination.value';
-import { DateTimeValue } from 'src/orders/infrastructure/persistance/values/date-time.value';
+import { OrderEntity } from 'src/orders/infrastructure/persistence/entities/order.entity';
+import { ClientIdValue } from 'src/orders/infrastructure/persistence/values/client-id.value';
+import { OrderOriginValue } from 'src/orders/infrastructure/persistence/values/order-origin.value';
+import { OrderDestinationValue } from 'src/orders/infrastructure/persistence/values/order-destination.value';
+import { DateTimeValue } from 'src/orders/infrastructure/persistence/values/date-time.value';
 import { OrderId } from 'src/orders/domain/aggregates/order/order-id.value';
 import { OrderDto } from '../dtos/response/order.dto';
 
