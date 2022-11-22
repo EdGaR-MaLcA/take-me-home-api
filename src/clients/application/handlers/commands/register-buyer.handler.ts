@@ -20,11 +20,13 @@ export class RegisterBuyerHandler
 
   async execute(command: RegisterBuyer) {
     let buyer: Buyer = BuyerMapper.commandToDomain(command, AppSettings.SUPER_ADMIN);
+        
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
       buyer = await this.buyerRepository.create(buyer);
+ 
       if (buyer == null) throw new Error("");
       buyer = this.publisher.mergeObjectContext(buyer);
       buyer.register();

@@ -49,6 +49,7 @@ export class BuyerMapper {
       null,
       null
     );
+
     const phoneNumber: PhoneNumber = PhoneNumber.create(command.phoneNumber);
     let buyer: Buyer = BuyerFactory.from(buyerName, dni, auditTrail, phoneNumber);
     return buyer;
@@ -65,11 +66,14 @@ export class BuyerMapper {
     const auditTrailValue: AuditTrailValue = AuditTrailValue.from(createdAt, createdBy, updatedAt, updatedBy);
     buyerEntity.auditTrail = auditTrailValue;
     buyerEntity.phoneNumber = PhoneNumberValue.from(buyer.getPhoneNumber().getValue());
+   
+
     return buyerEntity;
   }
 
   public static entityToDomain(buyerEntity: BuyerEntity): Buyer {
     if (buyerEntity == null) return null;
+    
     const buyerName: BuyerName = BuyerName.create(buyerEntity.name.firstName, buyerEntity.name.lastName);
     const dni: Dni = Dni.create(buyerEntity.dni.value);
     const auditTrail: AuditTrail = AuditTrail.from(

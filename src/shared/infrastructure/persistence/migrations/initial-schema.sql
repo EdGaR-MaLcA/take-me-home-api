@@ -46,17 +46,24 @@ CREATE TABLE IF NOT EXISTS clients(
   CONSTRAINT FK_clients_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS orders (
-  id VARCHAR(2) NOT NULL,
+ CREATE TABLE IF NOT EXISTS orders (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  client_id BIGINT UNSIGNED NOT NULL,
   origin VARCHAR(45) NOT NULL,
   destination VARCHAR(45) NOT NULL,
-  client_id BIGINT UNSIGNED NOT NULL,
+  max_date DATETIME NULL,
+  created_at DATETIME NULL,
+  created_by BIGINT UNSIGNED NULL,
+  updated_at DATETIME NULL,
+  updated_by BIGINT UNSIGNED NULL,
   PRIMARY KEY(id),
-  UNIQUE KEY UQ_departments_origin(origin),
-  UNIQUE KEY UQ_departments_destination(destination),
   KEY IX_orders_client_id(client_id),
-  CONSTRAINT FK_orders_client_id FOREIGN KEY(client_id) REFERENCES clients(id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY IX_orders_created_by(created_by),
+  KEY IX_orders_updated_by(updated_by),
+  CONSTRAINT FK_orders_client_id FOREIGN KEY(client_id) REFERENCES clients(id),
+  CONSTRAINT FK_orders_created_by FOREIGN KEY(created_by) REFERENCES users(id),
+  CONSTRAINT FK_orders_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS accounts(
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

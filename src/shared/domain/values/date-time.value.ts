@@ -14,12 +14,18 @@ export class DateTime {
       datetime
     );
   }
-
+ 
   public static fromString(datetime: string) {
     const date: Date = moment(datetime, 'YYYY-MM-DD HH:mm:ss').toDate();
     return new DateTime(
       date
     );
+  }
+ 
+
+  //get Date in string format
+  getValue() {
+    return moment(this.datetime).format('YYYY-MM-DD');
   }
 
 

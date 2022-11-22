@@ -25,6 +25,7 @@ export class BuyerApplicationService {
     const registerBuyer: RegisterBuyer = BuyerMapper.dtoRequestToCommand(registerBuyerRequest);
     const notification: AppNotification = await this.registerBuyerValidator.validate(registerBuyer);
     if (notification.hasErrors()) return Result.error(notification);
+     
     const buyer: Buyer = await this.commandBus.execute(registerBuyer);
     const response: RegisterBuyerResponse = BuyerMapper.domainToDtoResponse(buyer);
     return Result.ok(response);
