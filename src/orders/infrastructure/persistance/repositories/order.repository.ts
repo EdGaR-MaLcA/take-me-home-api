@@ -17,6 +17,8 @@ export class OrderEntityRepository implements OrderRepository  {
 
     console.log("Order Entity Before Call Save Mathod", orderEntity);
 
+    //When the save repository method is called, it return null value
+
     orderEntity = await this.OrderRepository.save(orderEntity);
 
     console.log("Order Entity After Calling Save Method", orderEntity);
