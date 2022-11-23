@@ -7,8 +7,10 @@ import { AppNotification } from 'src/shared/application/app.notification';
 import { RegisterBuyerResponse } from 'src/clients/application/dtos/response/register-buyer-response.dto';
 import { ApiController } from 'src/shared/interface/rest/api.controller';
 import { GetBuyerClients } from 'src/clients/application/messages/queries/get-buyer-clients.query';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('clients/buyer')
+@ApiTags('buyer clients')
 export class BuyerController {
   constructor(
     private readonly buyerApplicationService: BuyerApplicationService,
@@ -16,6 +18,7 @@ export class BuyerController {
   ) {}
 
   @Post('')
+  @ApiOperation({ summary: 'Register a new Buyer' })
   async register(
     @Body() registerBuyerRequest: RegisterBuyerRequest,
     @Res({ passthrough: true }) response
@@ -31,6 +34,7 @@ export class BuyerController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all buyers' })
   @Get('')
   async getAll(@Res({ passthrough: true }) response): Promise<object> {
     try {
@@ -41,6 +45,7 @@ export class BuyerController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a buyer by id' })
   @Get('/:id')
   async getById(@Param('id') id: number, @Res({ passthrough: true }) response): Promise<object> {
     try {

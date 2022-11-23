@@ -7,14 +7,18 @@ import { AppNotification } from 'src/shared/application/app.notification';
 import { RegisterTravelerResponse } from 'src/clients/application/dtos/response/register-traveler-response.dto';
 import { ApiController } from 'src/shared/interface/rest/api.controller';
 import { GetTravelerClients } from 'src/clients/application/messages/queries/get-traveler-clients.query';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('clients/traveler')
+@ApiTags('traveler clients')
+
 export class TravelerController {
   constructor(
     private readonly travelerApplicationService: TravelerApplicationService,
     private readonly queryBus: QueryBus
   ) {}
 
+  @ApiOperation({ summary: 'Register a new Traveler' })
   @Post('')
   async register(
     @Body() registerTravelerRequest: RegisterTravelerRequest,
@@ -31,6 +35,7 @@ export class TravelerController {
     }
   }
 
+  @ApiOperation({ summary: 'Get all travelers' })
   @Get('')
   async getAll(@Res({ passthrough: true }) response): Promise<object> {
     try {
@@ -41,6 +46,7 @@ export class TravelerController {
     }
   }
 
+  @ApiOperation({ summary: 'Get a traveler by id' })
   @Get('/:id')
   async getById(@Param('id') id: number, @Res({ passthrough: true }) response): Promise<object> {
     try {

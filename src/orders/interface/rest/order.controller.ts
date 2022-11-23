@@ -7,9 +7,11 @@ import { RegisterOrderRequest } from 'src/orders/application/dtos/request/regist
 import { RegisterOrderResponse } from 'src/orders/application/dtos/response/register-order-response.dto';
 import { OrderApplicationService } from 'src/orders/application/services/order-application.service';
 import { GetOrders } from 'src/orders/application/messages/queries/get-order.query';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
  
 
 @Controller('orders')
+@ApiTags('orders')
 export class OrderController {
   constructor(
     private readonly OrderApplicationService: OrderApplicationService,
@@ -17,6 +19,7 @@ export class OrderController {
   ) {}
 
   @Post('')
+  @ApiOperation({ summary: 'Regisyer an Order' })
   async register(
     @Body() registerOrderRequest: RegisterOrderRequest,
     @Res({ passthrough: true }) response
@@ -31,7 +34,8 @@ export class OrderController {
       return ApiController.serverError(response, error);
     }
   }
-
+  
+  @ApiOperation({ summary: 'Get all orders' })
   @Get('')
   async getAll(@Res({ passthrough: true }) response): Promise<object> {
     try {
@@ -42,6 +46,7 @@ export class OrderController {
     }
   }
 
+  @ApiOperation({ summary: 'Get an order by id' })
   @Get('/:id')
   async getById(@Param('id') id: number, @Res({ passthrough: true }) response): Promise<object> {
     try {
